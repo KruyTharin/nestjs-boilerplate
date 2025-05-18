@@ -1,4 +1,4 @@
-import { IsNumber, IsString } from 'class-validator';
+import { IsNumber, IsPositive, IsString } from 'class-validator';
 
 export class CreatePropertyDto {
   // @IsString({
@@ -14,5 +14,6 @@ export class CreatePropertyDto {
   description: string;
 
   @IsNumber()
+  @IsPositive()
   area: number;
 }
