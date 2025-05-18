@@ -2,7 +2,7 @@ import {
   Body,
   Controller,
   Get,
-  Headers,
+  Injectable,
   Param,
   Patch,
   Post,
@@ -18,17 +18,21 @@ import {
 } from './pipe/createPropertyZod.dto';
 import { HeaderDto } from './pipe/headers.dto';
 import { RequestHeader } from './pipe/request.header';
+import { PropertyService } from './property.service';
 
 @Controller('property')
+@Injectable()
 export class PropertyController {
+  constructor(private propertyService: PropertyService) {}
+
   @Get(':id')
   getOne(@Param('id') id: string): string {
-    return id;
+    return this.propertyService.getOne(id);
   }
 
   @Get()
   getAll(): string {
-    return 'get all';
+    return this.propertyService.getAll();
   }
 
   // USING WITH ZOD
